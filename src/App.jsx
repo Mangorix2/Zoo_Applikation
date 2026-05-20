@@ -12,9 +12,12 @@ function App() {
         <Router>
             <div>
                 <div className="Navigation">
-                    <nav>
-                        <Link to="/"><h2>MeinProjekt</h2></Link>
-                    </nav>
+                    <header className="border-bottom bg-white">
+                        <div className="container py-3 d-flex align-items-center justify-content-between">
+                            <span className="fw-bold fs-5">Zoo Applikation</span>
+                            <span className="badge bg-success">Heute offen</span>
+                        </div>
+                    </header>
                     <nav>
                         <NavLink to="/" className={navClass} end>Startseite</NavLink>
                         <NavLink to="/impressum" className={navClass}>Impressum</NavLink>
