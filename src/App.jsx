@@ -1,4 +1,5 @@
 import './App.css';
+import './Zoo.css'
 import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router-dom';
 
 import Startseite from "./Startseite.jsx";

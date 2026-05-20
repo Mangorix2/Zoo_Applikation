@@ -1,0 +1,129 @@
+/* Allgemein */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f8fb;
+    color: #111827;
+}
+
+/* Navigation */
+
+.Navigation {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.Navigation nav {
+    display: flex;
+    gap: 20px;
+    padding: 15px 30px;
+}
+
+.Navigation nav a {
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.Navigation nav a:hover {
+    color: #16a34a;
+}
+
+.Navigation nav a.active {
+    color: #16a34a;
+    text-decoration: underline;
+}
+
+/* Seitenlayout */
+
+.zoo-page {
+    min-height: 100vh;
+    background: #f6f8fb;
+}
+
+.zoo-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Titel */
+
+.zoo-label {
+    color: #16a34a;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.zoo-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.zoo-subtitle {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 35px;
+}
+
+/* Cards */
+
+.zoo-card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.zoo-card h2,
+.zoo-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.zoo-card p,
+.zoo-card li,
+.zoo-card dd {
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Grid */
+
+.zoo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Definition Lists */
+
+.zoo-card dt {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.zoo-card dd {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Footer */
+
+.zoo-footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #6b7280;
+}
