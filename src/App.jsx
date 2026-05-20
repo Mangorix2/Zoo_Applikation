@@ -1,9 +1,9 @@
 import './App.css';
 import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router-dom';
 
-import Startseite from "./pages/Startseite.jsx";
-import Impressum from "./pages/Impressum.jsx";
-import Datenschutz from "./pages/Datenschutz.jsx";
+import Startseite from "./Startseite.jsx";
+import Impressum from "./Impressum.jsx";
+import Datenschutz from "./Datenschutz.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
