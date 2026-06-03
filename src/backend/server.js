@@ -57,10 +57,14 @@ app.post('/api/users', (req, res) => {
 
 // Get User
 app.get('/api/users', (req, res) => {
-    const testUsers = [
-        { id: 1, username: "Tierfreund99", email: "max@zoo.de" }
-    ];
-    res.json(testUsers);
+    const sql = `SELECT * FROM users`;
+    
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: "Datenbankfehler: " + err.message });
+        }
+        res.json(rows); 
+    });
 });
 
 // Delete user
