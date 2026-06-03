@@ -8,5 +8,8 @@ git pull origin dev
 echo "Installing dependencies"
 npm install
 
+echo "Starting Backend"
+node src/backend/server.js &
+
 echo "Starting application"
 exec npm run dev -- --host

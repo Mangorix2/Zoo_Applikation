@@ -9,6 +9,6 @@ RUN git clone -b dev https://github.com/Mangorix2/Zoo_Applikation.git .
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 5173
+EXPOSE 5173 3000
 
 ENTRYPOINT ["/entrypoint.sh"]
