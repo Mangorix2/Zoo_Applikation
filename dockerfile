@@ -4,9 +4,10 @@ RUN apk update && apk add --no-cache git
 
 WORKDIR /Zoo_Applikation
 
-RUN git clone -b dev https://github.com/Mangorix2/Zoo_Applikation.git .
+RUN git clone -b backend https://github.com/Mangorix2/Zoo_Applikation.git .
 
 COPY entrypoint.sh /entrypoint.sh
+RUN dos2unix /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 5173 3000
