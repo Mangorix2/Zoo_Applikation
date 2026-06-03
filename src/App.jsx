@@ -5,6 +5,7 @@ import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router
 import Startseite from "./Startseite.jsx";
 import Impressum from "./Impressum.jsx";
 import Datenschutz from "./Datenschutz.jsx";
+import ZooKarte from "./ZooKarte.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
@@ -23,6 +24,7 @@ function App() {
                         <NavLink to="/" className={navClass} end>Startseite</NavLink>
                         <NavLink to="/impressum" className={navClass}>Impressum</NavLink>
                         <NavLink to="/datenschutz" className={navClass}>Datenschutz</NavLink>
+                        <NavLink to="/zookarte" className={navClass} end>ZooKarte</NavLink>
                     </nav>
                 </div>
 
@@ -30,6 +32,7 @@ function App() {
                     <Route path="/" element={<Startseite/>}/>
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="/datenschutz" element={<Datenschutz/>}/>
+                    <Route path="/zookarte" element={<ZooKarte/>}/>
                 </Routes>
             </div>
         </Router>
