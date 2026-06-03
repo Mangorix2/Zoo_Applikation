@@ -1,0 +1,344 @@
+/* ── Allgemein ───────────────────────────────────────────────── */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f8fb;
+    color: #111827;
+}
+
+/* ── Navigation ─────────────────────────────────────────────── */
+.Navigation {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.Navigation nav {
+    display: flex;
+    gap: 20px;
+    padding: 15px 30px;
+}
+
+.Navigation nav a {
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.Navigation nav a:hover {
+    color: #16a34a;
+}
+
+.Navigation nav a.active {
+    color: #16a34a;
+    text-decoration: underline;
+}
+
+/* ── Seitenlayout ────────────────────────────────────────────── */
+.zoo-page {
+    min-height: 100vh;
+    background: #f6f8fb;
+}
+
+.zoo-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ── Titel ───────────────────────────────────────────────────── */
+.zoo-label {
+    color: #16a34a;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.zoo-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.zoo-subtitle {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 35px;
+}
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.zoo-card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.zoo-card h2,
+.zoo-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.zoo-card p,
+.zoo-card li,
+.zoo-card dd {
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ── Grid ────────────────────────────────────────────────────── */
+.zoo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* ── Definition Lists ────────────────────────────────────────── */
+.zoo-card dt {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.zoo-card dd {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.zoo-footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ── Map Container ───────────────────────────────────────────── */
+.zoo-map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #d1d5db;
+    background: #5a9e5a;
+    cursor: default;
+}
+
+/* Legacy image + layer (kept for compatibility) */
+.zoo-map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.map-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* ── SVG background ──────────────────────────────────────────── */
+.zoo-map-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Clickable zones ─────────────────────────────────────────── */
+.zoo-zone {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.65);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    z-index: 5;
+}
+
+.zoo-zone:hover {
+    transform: scale(1.1);
+    border-color: white;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+    z-index: 10;
+}
+
+.zoo-zone-label {
+    color: white;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+    line-height: 1.3;
+    padding: 4px;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Pin markers ─────────────────────────────────────────────── */
+.zoo-pin {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 15;
+    transition: transform 0.18s ease;
+}
+
+.zoo-pin:hover {
+    transform: translate(-50%, -50%) scale(1.35);
+    z-index: 20;
+}
+
+.zoo-pin-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.zoo-pin-icon {
+    transform: rotate(45deg);
+    font-size: 12px;
+    line-height: 1;
+}
+
+/* ── Entrance badge ──────────────────────────────────────────── */
+.zoo-entrance {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #dc2626;
+    color: white;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border: 2px solid white;
+    z-index: 6;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Info panel (overlay inside map) ────────────────────────── */
+.zoo-info-panel {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 230px;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+    z-index: 30;
+    animation: zoo-panel-in 0.2s ease;
+}
+
+@keyframes zoo-panel-in {
+    from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.zoo-info-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.zoo-info-close:hover {
+    color: #374151;
+}
+
+.zoo-info-emoji {
+    font-size: 34px;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.zoo-info-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.zoo-info-desc {
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.65;
+    margin-bottom: 10px;
+}
+
+.zoo-info-tag {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ── Legend lists ────────────────────────────────────────────── */
+.zoo-legend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.zoo-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 8px;
+    transition: background 0.15s;
+}
+
+.zoo-legend-item:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.zoo-legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid rgba(0,0,0,0.12);
+}
