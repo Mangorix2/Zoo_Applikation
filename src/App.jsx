@@ -6,6 +6,7 @@ import Startseite from "./Startseite.jsx";
 import Impressum from "./Impressum.jsx";
 import Datenschutz from "./Datenschutz.jsx";
 import ZooKarte from "./ZooKarte.jsx";
+import PopupAd from "./PopupAd.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
@@ -13,6 +14,7 @@ function App() {
     return (
         <Router>
             <div>
+              {<PopupAd />}
                 <div className="Navigation">
                     <header className="border-bottom bg-white">
                         <div className="container py-3 d-flex align-items-center justify-content-between">
