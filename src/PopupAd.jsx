@@ -203,7 +203,7 @@ export default function PopupAd() {
 
           <div className="popup-footer">
             <button className="btn-yes" onClick={goToGame}>💪 Yes I Am!</button>
-            <button className="btn-no" onClick={close}>Maybe not...</button>
+            <button className="btn-no" onClick={goToGame}>Maybe not</button>
           </div>
         </div>
       </div>
