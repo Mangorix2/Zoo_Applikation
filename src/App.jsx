@@ -1,10 +1,13 @@
 import './App.css';
+import './Zoo.css'
 import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router-dom';
 
 import Startseite from "./Startseite.jsx";
 import Impressum from "./Impressum.jsx";
 import Datenschutz from "./Datenschutz.jsx";
 import UserFeat from './UserFeat.jsx';
+import ZooKarte from "./ZooKarte.jsx";
+import PopupAd from "./PopupAd.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
@@ -12,6 +15,7 @@ function App() {
     return (
         <Router>
             <div>
+              {<PopupAd />}
                 <div className="Navigation">
                     <header className="border-bottom bg-white">
                         <div className="container py-4 d-flex align-items-center justify-content-between">
@@ -24,6 +28,7 @@ function App() {
                         <NavLink to="/user-stuff" className={navClass} end>user-stuff</NavLink>
                         <NavLink to="/impressum" className={navClass}>Impressum</NavLink>
                         <NavLink to="/datenschutz" className={navClass}>Datenschutz</NavLink>
+                        <NavLink to="/zookarte" className={navClass} end>ZooKarte</NavLink>
                     </nav>
                 </div>
 
@@ -32,6 +37,7 @@ function App() {
                     <Route path="/user-stuff" element={<UserFeat/>}/>
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="/datenschutz" element={<Datenschutz/>}/>
+                    <Route path="/zookarte" element={<ZooKarte/>}/>
                 </Routes>
             </div>
         </Router>
