@@ -8,6 +8,7 @@ import Datenschutz from "./Datenschutz.jsx";
 import UserFeat from './UserFeat.jsx';
 import ZooKarte from "./ZooKarte.jsx";
 import PopupAd from "./PopupAd.jsx";
+import Rating from "./ratingseite.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
@@ -29,6 +30,7 @@ function App() {
                         <NavLink to="/impressum" className={navClass}>Impressum</NavLink>
                         <NavLink to="/datenschutz" className={navClass}>Datenschutz</NavLink>
                         <NavLink to="/zookarte" className={navClass} end>ZooKarte</NavLink>
+                        <NavLink to="/rating" className={navClass} end>Rating</NavLink>
                     </nav>
                 </div>
 
@@ -38,6 +40,7 @@ function App() {
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="/datenschutz" element={<Datenschutz/>}/>
                     <Route path="/zookarte" element={<ZooKarte/>}/>
+                    <Route path="/rating" element={<Rating/>}/>
                 </Routes>
             </div>
         </Router>
