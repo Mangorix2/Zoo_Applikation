@@ -9,10 +9,10 @@ export default function Startseite() {
                         <h1 className="display-5 fw-bold mb-3">Willkommen im Zoo</h1>
                         <p className="lead text-secondary mb-4">Infos fuer den Besuch auf einen Blick.</p>
                         <div className="d-flex flex-wrap gap-2">
-                            <a className="btn btn-success btn-lg" href="#visit-info">
+                            <a className="btn btn-success btn-lg" href="#/zookarte">
                                 Zum Inhalt
                             </a>
-                            <a className="btn btn-outline-success btn-lg" href="#visit-info">
+                            <a className="btn btn-outline-success btn-lg" href="#/impressum">
                                 Infos
                             </a>
                         </div>
