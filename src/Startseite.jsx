@@ -28,7 +28,7 @@ export default function Startseite() {
                                 </div>
                                 <div>
                                     <div className="text-secondary small">Naechstes Highlight</div>
-                                    <div className="fw-semibold">Futterzeit bei den Loewen</div>
+                                    <div className="fw-semibold">Futterzeit bei den Löwen</div>
                                 </div>
                             </div>
                         </div>
