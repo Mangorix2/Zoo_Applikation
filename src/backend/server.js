@@ -1,22 +1,26 @@
-import express from 'express';
-import cors from 'cors';
-import sqlite3Package from 'sqlite3';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import Groq from "groq-sdk";
+import sqlite3Package from "sqlite3";
+import path from "path";
+import { fileURLToPath } from "url";
+import { zooData } from "./data/zooData.js";
 
-const sqlite3 = sqlite3Package.verbose();
+dotenv.config();
+
 const app = express();
 const PORT = 3000;
+const HOST = '0.0.0.0';
 
-// Pfade für ES-Module bereitstellen (__dirname Ersatz)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
 
-// DB-Verbindung mit absolutem Pfad (erstellt zoo.db im selben Verzeichnis)
-const dbPath = path.join(__dirname, 'zoo.db');
+const sqlite3 = sqlite3Package.verbose();
+const dbPath = path.join(__dirname, "zoo.db");
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error("Fehler beim Öffnen der DB:", err.message);
@@ -25,7 +29,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Tabellen erstellen, falls nicht vorhanden
 db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
@@ -46,10 +49,53 @@ db.serialize(() => {
     `);
 });
 
-// --- RATING ENDPUNKTE ---
+const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+});
 
-// POST: Neue Bewertung hinzufügen
-app.post('/api/ratings', (req, res) => {
+app.post("/api/chat", async (req, res) => {
+    try {
+        const { message } = req.body;
+
+        if (!message) {
+            return res.status(400).json({ error: "No message provided." });
+        }
+
+        const chatCompletion = await groq.chat.completions.create({
+            model: "llama-3.3-70b-versatile",
+            messages: [
+                {
+                    role: "system",
+                    content: `
+${zooData}
+
+You are the official AI assistant for Zoo Musterstadt.
+
+Rules:
+- Answer ONLY using the zoo information provided above.
+- Never invent information.
+- If the answer is not available, politely say:
+  "I'm sorry, I don't have that information yet."
+- Keep answers friendly.
+- Keep answers short (1-4 sentences).
+`
+                },
+                {
+                    role: "user",
+                    content: message
+                }
+            ]
+        });
+
+        res.json({ reply: chatCompletion.choices[0].message.content });
+
+    } catch (error) {
+        console.error("Groq Error:", error);
+        res.status(500).json({ error: "AI Error" });
+    }
+});
+
+app.post("/api/ratings", (req, res) => {
     const { stars, text } = req.body;
 
     if (stars === undefined || stars < 1 || stars > 5) {
@@ -73,8 +119,7 @@ app.post('/api/ratings', (req, res) => {
     });
 });
 
-// GET: Alle Bewertungen abrufen
-app.get('/api/ratings', (req, res) => {
+app.get("/api/ratings", (req, res) => {
     const sql = `SELECT * FROM ratings ORDER BY id DESC`;
 
     db.all(sql, [], (err, rows) => {
@@ -85,10 +130,7 @@ app.get('/api/ratings', (req, res) => {
     });
 });
 
-// --- USER ENDPUNKTE ---
-
-// POST: Neuen User registrieren
-app.post('/api/users', (req, res) => {
+app.post("/api/users", (req, res) => {
     const { username, email, first_name, last_name } = req.body;
 
     if (!username || !email) {
@@ -100,7 +142,7 @@ app.post('/api/users', (req, res) => {
 
     db.run(sql, params, function(err) {
         if (err) {
-            if (err.message.includes('UNIQUE constraint failed')) {
+            if (err.message.includes("UNIQUE constraint failed")) {
                 return res.status(400).json({
                     error: "Registrierung fehlgeschlagen: Dieser Benutzername oder diese E-Mail wird bereits verwendet."
                 });
@@ -111,16 +153,14 @@ app.post('/api/users', (req, res) => {
     });
 });
 
-// GET: Alle User abrufen
-app.get('/api/users', (req, res) => {
+app.get("/api/users", (req, res) => {
     db.all(`SELECT * FROM users`, [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(rows);
     });
 });
 
-// DELETE: User löschen
-app.delete('/api/users/:id', (req, res) => {
+app.delete("/api/users/:id", (req, res) => {
     const userId = req.params.id;
     db.run(`DELETE FROM users WHERE id = ?`, userId, function(err) {
         if (err) return res.status(500).json({ error: err.message });
@@ -129,7 +169,6 @@ app.delete('/api/users/:id', (req, res) => {
     });
 });
 
-// Server starten
-app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Zoo-API & AI-Server läuft auf http://localhost:${PORT}`);
 });
