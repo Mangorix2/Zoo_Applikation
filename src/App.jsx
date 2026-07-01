@@ -19,7 +19,7 @@ function App() {
         <Router>
             <div>
                 {<PopupAd />}
-                <ZooAIChat />
+                <ZooAiChat />
                 <div className="Navigation">
                     <header className="border-bottom bg-white">
                         <div className="container py-4 d-flex align-items-center justify-content-between">
