@@ -10,7 +10,7 @@ import ZooKarte from "./ZooKarte.jsx";
 import PopupAd from "./PopupAd.jsx";
 import Billetseite from "./Billetseite.jsx";
 import Rating from "./ratingseite.jsx";
-import ZooAIChat from "./ZooAIChat.jsx";
+import ZooAiChat from "./ZooAIChat.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
 
