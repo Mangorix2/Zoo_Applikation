@@ -8,10 +8,8 @@ import Datenschutz from "./Datenschutz.jsx";
 import UserFeat from './UserFeat.jsx';
 import ZooKarte from "./ZooKarte.jsx";
 import PopupAd from "./PopupAd.jsx";
-import Billetseite from "./Billetseite.jsx"; // 1. HIER NEU IMPORTIERT
+import Billetseite from "./Billetseite.jsx";
 import Rating from "./ratingseite.jsx";
-
-// 1. IMPORT THE CHAT COMPONENT HERE
 import ZooAIChat from "./ZooAIChat.jsx";
 
 const navClass = ({ isActive }) => isActive ? "active" : "";
@@ -21,8 +19,6 @@ function App() {
         <Router>
             <div>
                 {<PopupAd />}
-
-                {/* 2. ADD THE CHAT COMPONENT HERE */}
                 <ZooAIChat />
                 <div className="Navigation">
                     <header className="border-bottom bg-white">
@@ -33,7 +29,7 @@ function App() {
                     </header>
                     <nav>
                         <NavLink to="/" className={navClass} end>Startseite</NavLink>
-                        <NavLink to="/billetseite" className={navClass}>Billetseite</NavLink> {/* 2. HIER ALS LINK NEU IN DIE NAVI */}
+                        <NavLink to="/billetseite" className={navClass}>Billetseite</NavLink>
                         <NavLink to="/user-stuff" className={navClass} end>user-stuff</NavLink>
                         <NavLink to="/impressum" className={navClass}>Impressum</NavLink>
                         <NavLink to="/datenschutz" className={navClass}>Datenschutz</NavLink>
@@ -44,7 +40,7 @@ function App() {
 
                 <Routes>
                     <Route path="/" element={<Startseite/>}/>
-                    <Route path="/billetseite" element={<Billetseite/>}/> {/* 3. HIER ALS ROUTE NEU HINZUGEFÜGT */}
+                    <Route path="/billetseite" element={<Billetseite/>}/>
                     <Route path="/user-stuff" element={<UserFeat/>}/>
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="/datenschutz" element={<Datenschutz/>}/>
