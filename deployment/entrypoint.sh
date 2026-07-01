@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 cd /Zoo_Applikation
 
 echo "Fetching latest changes from GitHub"
@@ -9,7 +11,7 @@ echo "Installing dependencies"
 npm install
 
 echo "Starting Backend"
-nohup node src/backend/server.js > backend.log 2>&1 &
+node src/backend/server.js &
 
 echo "Starting application"
-exec npm run dev -- --host
+exec npm run dev -- --host 0.0.0.0

@@ -5,7 +5,7 @@ import Groq from "groq-sdk";
 import sqlite3Package from "sqlite3";
 import path from "path";
 import { fileURLToPath } from "url";
-import { zooData } from "./data/zooData.js";
+import { zooData } from "../data/zooData.js";
 
 dotenv.config();
 
