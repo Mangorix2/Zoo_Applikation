@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './ZooAIChat.css'; // Import the CSS file
+import './ZooAiChat.css';
 
 const ChatIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -19,7 +19,7 @@ const SendIcon = () => (
     </svg>
 );
 
-export default function ZooAIChat() {
+export default function ZooAiChat() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
         { role: 'bot', text: "Roar! 👋 Welcome to the zoo. Ask me about animals, tickets, or opening times!" }
